@@ -1,0 +1,88 @@
+﻿@page "/"
+@model DeliveryAplication.Pages.Facilities.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="align-content:center">Facilities List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form asp-page="./Index" method="get" class="form-inline justify-content-center">
+    <div class="form-group mb-2">
+        <label for="SearchString" class="mr-2">Find by Location:</label>
+        <input type="text" name="SearchString" value="@Model.CurrentFilter" class="form-control mr-2" />
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
+    <span class="ml-2"> | </span>
+    <a asp-page="./Index" class="btn btn-secondary ml-2">Back to full List</a>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].Picture)
+            </th>
+           
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.RoomSort">
+                @Html.DisplayNameFor(model => model.Facility[0].Room)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.PriceSort">
+                @Html.DisplayNameFor(model => model.Facility[0].Price)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].AvailableDate)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Facility[0].Location.LocationName)
+            </th>
+            
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Facility)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.FacilityID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    <img src="@Url.Content("~/Images/" + item.Picture)" alt="Image not found" style="width:100px; height:100px;" />
+                </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Room)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailableDate)
+                </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                    </td>
+               
+                
+
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

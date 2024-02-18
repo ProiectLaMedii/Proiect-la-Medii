@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\NewFolder1\**" />
+    <Compile Remove="Models\NewFolder2\**" />
+    <Compile Remove="Pages\Facilities\**" />
+    <Compile Remove="Pages\Pets\**" />
+    <Content Remove="Models\NewFolder1\**" />
+    <Content Remove="Models\NewFolder2\**" />
+    <Content Remove="Pages\Facilities\**" />
+    <Content Remove="Pages\Pets\**" />
+    <EmbeddedResource Remove="Models\NewFolder1\**" />
+    <EmbeddedResource Remove="Models\NewFolder2\**" />
+    <EmbeddedResource Remove="Pages\Facilities\**" />
+    <EmbeddedResource Remove="Pages\Pets\**" />
+    <None Remove="Models\NewFolder1\**" />
+    <None Remove="Models\NewFolder2\**" />
+    <None Remove="Pages\Facilities\**" />
+    <None Remove="Pages\Pets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Facility.cs" />
+    <Compile Remove="Models\Pet.cs" />
+    <Compile Remove="Pages\Index.cshtml.cs" />
+    <Compile Remove="Pages\Locations\Details.cshtml.cs" />
+    <Compile Remove="Pages\Requests\Details.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Index.cshtml" />
+    <Content Remove="Pages\Locations\Details.cshtml" />
+    <Content Remove="Pages\Requests\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.27">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\LibraryIdentity\" />
+  </ItemGroup>
+
+</Project>

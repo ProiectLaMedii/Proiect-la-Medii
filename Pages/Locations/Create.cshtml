@@ -1,0 +1,60 @@
+﻿@page
+@model DeliveryAplication.Pages.Locations.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Location</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Location.LocationName" class="control-label"></label>
+                <input asp-for="Location.LocationName" class="form-control" />
+                <span asp-validation-for="Location.LocationName" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+                <label asp-for="Location.Picture"></label>
+                <input asp-for="Location.Picture" type="text" class="form-control" /></div>
+            <div class="form-group">
+                <label asp-for="Location.Address" class="control-label"></label>
+                <input asp-for="Location.Address" class="form-control" id="address-input" />
+                <span asp-validation-for="Location.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHaOlsEnYQPiWiOZjsxTy2dX0AeJ3u9Hc&libraries=places&callback=initAutocomplete" async defer></script>
+
+    <script>
+        function initAutocomplete() {
+           
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('address-input'), { types: ['geocode'] });
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            var place = autocomplete.getPlace();  
+        }
+    </script>
+}

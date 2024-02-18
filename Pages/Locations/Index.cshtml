@@ -1,0 +1,72 @@
+﻿@page
+@model DeliveryAplication.Pages.Locations.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Locations</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].Picture)
+            </th
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location[0].Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LocationData.Locations)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.LocationID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationName)
+                </td>
+                <td>
+                    <img src="@Url.Content("~/Images/" + item.Picture)" alt="@item.LocationName" style="width:100px; height:100px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+               
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.LocationData.Delivery != null)
+{
+    <h3>The following deliveries are related for the selected location: </h3>
+    <table class="table">
+        @foreach (var item in Model.LocationData.Delivery)
+        {
+            <tr>
+                 <td>@item.ID</td>
+                <td>@item.OrderNumber</td>
+                
+                <!-- Adauga mai multeeee -->
+            </tr>
+        }
+    </table>
+}

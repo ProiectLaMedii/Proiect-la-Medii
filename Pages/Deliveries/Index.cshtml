@@ -1,0 +1,76 @@
+﻿@page
+@model DeliveryAplication.Pages.Deliveries.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Delivery status </h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].OrderNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].DispatchTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].DeliveryStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].Driver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].PickupLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Delivery[0].DeliveryLocation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Delivery) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DispatchTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Driver.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupLocation.LocationName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryLocation.LocationName)
+            </td>
+            <td>
+                @* <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a> *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
